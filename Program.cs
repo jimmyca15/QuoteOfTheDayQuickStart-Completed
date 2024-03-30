@@ -19,9 +19,11 @@ builder.Configuration
     });
 
 // Add Application Insights telemetry.
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+builder.Services.AddApplicationInsightsTelemetry(
+    new ApplicationInsightsServiceOptions
     {
-        ConnectionString = builder.Configuration.GetConnectionString("AppInsights")
+        ConnectionString = builder.Configuration.GetConnectionString("AppInsights"),
+        EnableAdaptiveSampling = false
     })
     .AddSingleton<ITelemetryInitializer, TargetingTelemetryInitializer>();
 
